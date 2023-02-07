@@ -42,7 +42,7 @@ EOF
 	rm -f query.sql
 
 	# Kill background mysqld_safe
-	ps | grep "/usr/bin/mysqld_safe" | awk '{print $1}' | xargs kill -9
+	ps | grep "/usr/bin/mysqld_safe" | grep -v "grep" | awk '{print $1}' | xargs kill -9
 
 	# Setup flag
 	touch .cnf_success
