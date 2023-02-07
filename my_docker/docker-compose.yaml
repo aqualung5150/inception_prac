@@ -4,4 +4,6 @@ services:
   mariadb:
     env_file: mariadb.env
     build: .
+    container_name: mariadb
     image: mariadb
+    restart: always
