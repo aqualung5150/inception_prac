@@ -13,8 +13,10 @@ RUN apk update && \
 	mv wp-cli.phar /usr/bin && \ 
 	chmod +x /usr/bin/wp-cli.phar && \
 	ln -sf /usr/bin/wp-cli.phar /usr/bin/wp && \
-	wp core download --path=/var/www/wordpress --allow-root
+	wp core download --path=/var/www/wordpress --locale=ko_KR --allow-root
+
+COPY	./run.sh /scripts/run.sh
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-CMD ["/bin/sh"]
+CMD ["sh", "/scripts/run.sh"]

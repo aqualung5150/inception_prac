@@ -22,10 +22,12 @@ services:
     restart: always
     networks:
       - mariadb_network
-      - wordpress_network
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=${MYSQL_HOST}
     tty: true
 networks:
   mariadb_network:
-    driver: bridge
-  wordpress_network:
     driver: bridge
