@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  mariadb:
+    build: ./files/mariadb
+    container_name: mariadb
+    image: mariadb
+    restart: always
+    networks:
+      - mariadb_network
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  wordpress:
+    build: ./files/wordpress
+    container_name: wordpress
+    image: wordpress
+    depends_on:
+      - mariadb
+    restart: always
+    networks:
+      - mariadb_network
+      - wordpress_network
+    tty: true
+networks:
+  mariadb_network:
+    driver: bridge
+  wordpress_network:
+    driver: bridge

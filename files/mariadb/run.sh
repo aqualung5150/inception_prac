@@ -4,11 +4,11 @@
 if [ ! -f ".cnf_success" ]; then
 
 	mkdir -p /run/mysqld /var/lib/mysql
-	mariadb-install-db --datadir=/var/lib/mysql
+	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 	chown -R mysql:mysql /var/lib/mysql /run/mysqld
 
 	# Run mysqld_safe as background to set up config
-	/usr/bin/mysqld_safe --datadir=/var/lib/mysql &
+	/usr/bin/mysqld_safe --user=mysql --datadir=/var/lib/mysql &
 
 	# Make query.sql
 	cat << EOF > query.sql
@@ -22,17 +22,8 @@ if [ ! -f ".cnf_success" ]; then
 	FLUSH PRIVILEGES ;
 EOF
 
-	# Wait 10 sec until mysqld_safe server is on
-	for i in {1..10}
-	do
-		if ! mysqladmin ping; then
-			sleep 1
-		else
-			break
-		fi
-	done
-	
-	if ! mysqladmin ping; then
+	# Wait until mysqld_safe server is on
+	if ! mysqladmin -w=30 ping; then
 		printf "Failed to run mysqld"
 		exit 1
 	fi
@@ -42,11 +33,11 @@ EOF
 	rm -f query.sql
 
 	# Kill background mysqld_safe
-	ps | grep "/usr/bin/mysqld_safe" | grep -v "grep" | awk '{print $1}' | xargs kill -9
+	ps | grep "/usr/bin/mariadb" | grep -v "grep" | awk '{print $1}' | xargs kill -15
 
 	# Setup flag
 	touch .cnf_success
 fi
 
 # Run mysqld_safe
-/usr/bin/mysqld_safe --datadir=/var/lib/mysql --skip-networking=0 --bind-address=0.0.0.0
+/usr/bin/mysqld_safe --user=mysql --datadir=/var/lib/mysql --skip-networking=0 --bind-address=0.0.0.0
