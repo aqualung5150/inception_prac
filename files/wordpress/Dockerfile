@@ -10,9 +10,10 @@ RUN apk update && \
 	rm -rf /var/cache/apk/* && \
 	mkdir -p /var/www/wordpress && \
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
-	mv wp-cli.phar /usr/bin && \
+	mv wp-cli.phar /usr/bin && \ 
 	chmod +x /usr/bin/wp-cli.phar && \
-	ln -sf /usr/bin/wp-cli.phar /usr/bin/wp
+	ln -sf /usr/bin/wp-cli.phar /usr/bin/wp && \
+	wp core download --path=/var/www/wordpress --allow-root
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
