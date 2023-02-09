@@ -1,6 +1,6 @@
 # !/bin/sh
 
-# Not setup
+# If not setup
 if [ ! -f ".cnf_success" ]; then
 
 	mkdir -p /run/mysqld /var/lib/mysql

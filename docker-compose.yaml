@@ -7,7 +7,7 @@ services:
     image: mariadb
     restart: always
     networks:
-      - mariadb_network
+      - backend_network
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
@@ -21,7 +21,8 @@ services:
       - mariadb
     restart: always
     networks:
-      - mariadb_network
+      - frontend_network
+      - backend_network
     environment:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
@@ -35,7 +36,10 @@ services:
       - WP_USER=${WP_USER}
       - WP_USER_PASSWORD=${WP_USER_PASSWORD}
       - WP_USER_EMAIL=${WP_USER_EMAIL}
-    tty: true
 networks:
-  mariadb_network:
+  frontend_network:
     driver: bridge
+    name: frontend
+  backend_network:
+    driver: bridge
+    name: backend
