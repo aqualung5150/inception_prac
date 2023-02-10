@@ -36,6 +36,15 @@ services:
       - WP_USER=${WP_USER}
       - WP_USER_PASSWORD=${WP_USER_PASSWORD}
       - WP_USER_EMAIL=${WP_USER_EMAIL}
+  nginx:
+    build: ./files/nginx
+    container_name: nginx
+    imgae: nginx
+    depends_on:
+      - wordpress
+    restart: always
+    networks:
+      - frontend_network
 networks:
   frontend_network:
     driver: bridge

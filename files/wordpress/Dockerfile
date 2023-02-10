@@ -1,5 +1,6 @@
 FROM	alpine:3.15
 
+# Install required php packages and wp-cli
 RUN apk update && \
 	apk add --no-cache dumb-init curl mariadb-client \
 	php7 php7-phar php7-fpm php7-common php7-session php7-iconv php7-json \
@@ -16,6 +17,7 @@ RUN apk update && \
 
 COPY	./run.sh /scripts/run.sh
 
+# Save every wordpress file on WORKDIR
 WORKDIR /var/www/html/wordpress
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
