@@ -39,12 +39,13 @@ services:
   nginx:
     build: ./files/nginx
     container_name: nginx
-    imgae: nginx
+    image: nginx
     depends_on:
       - wordpress
     restart: always
     networks:
       - frontend_network
+    tty: true
 networks:
   frontend_network:
     driver: bridge
