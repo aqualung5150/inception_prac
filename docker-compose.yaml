@@ -45,7 +45,8 @@ services:
     restart: always
     networks:
       - frontend_network
-    tty: true
+    ports:
+      - "443:443"
 networks:
   frontend_network:
     driver: bridge

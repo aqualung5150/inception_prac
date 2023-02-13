@@ -22,7 +22,7 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
 	done
 
 	# Downloads Wordpress core files.
-	wp core download --locale=ko_KR --allow-root
+	# wp core download --locale=ko_KR --allow-root
 	# Creates wp-config.php.
 	wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_USER_PASSWORD --dbhost=$MYSQL_HOST --allow-root
 	# Creates the WordPress tables in the database.
