@@ -9,9 +9,11 @@ RUN apk update && \
     # https://docs.aws.amazon.com/ko_kr/elasticbeanstalk/latest/dg/configuring-https-ssl.html
 
 COPY ./nginx.conf /etc/nginx/conf.d/default.conf
-# COPY	./run.sh /scripts/run.sh
+COPY	./run.sh /scripts/run.sh
+
+EXPOSE      443
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
-# CMD ["sh", "/scripts/run.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["sh", "/scripts/run.sh"]
+# CMD ["nginx", "-g", "daemon off;"]

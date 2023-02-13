@@ -13,6 +13,8 @@ services:
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_USER_PASSWORD=${MYSQL_USER_PASSWORD}
+    ports:
+      - "3306:3306"
   wordpress:
     build: ./files/wordpress
     container_name: wordpress
@@ -36,6 +38,8 @@ services:
       - WP_USER=${WP_USER}
       - WP_USER_PASSWORD=${WP_USER_PASSWORD}
       - WP_USER_EMAIL=${WP_USER_EMAIL}
+    ports:
+      - "9000:9000"
   nginx:
     build: ./files/nginx
     container_name: nginx

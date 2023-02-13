@@ -14,7 +14,6 @@ RUN apk update && \
 	mv wp-cli.phar /usr/bin && \ 
 	chmod +x /usr/bin/wp-cli.phar && \
 	ln -sf /usr/bin/wp-cli.phar /usr/bin/wp && \
-	wp core download --locale=ko_KR --allow-root && \
 	adduser -S nginx &&	addgroup -S nginx
 
 COPY	./run.sh /scripts/run.sh
