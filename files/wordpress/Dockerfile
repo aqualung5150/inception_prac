@@ -1,4 +1,4 @@
-FROM	alpine:3.15
+FROM alpine:3.15
 
 # Install required php packages and wp-cli
 RUN apk update && \
@@ -17,10 +17,7 @@ RUN apk update && \
 	wp core download --locale=ko_KR --allow-root --path=/var/www/html/wordpress && \
 	adduser -S nginx &&	addgroup -S nginx
 
-COPY	./run.sh /scripts/run.sh
-
-# Save every wordpress file on WORKDIR
-WORKDIR /var/www/html/wordpress
+COPY ./run.sh /scripts/run.sh
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 
