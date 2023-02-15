@@ -61,17 +61,17 @@ networks:
     driver: bridge
     name: backend_network
 volumes:
+  # mariadb_volume:
+  #   driver: local
+  #   driver_opts:
+  #     type: volume
+  #     device: /home/seunchoi/data/db
+  #     o: bind
+  # wordpress_volume:
+  #   driver: local
+  #   driver_opts:
+  #     type: volume
+  #     device: /home/seunchoi/data/wordpress
+  #     o: bind
   mariadb_volume:
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/db
-      # device: /Users/seunchoi/Desktop/db
-      o: bind
   wordpress_volume:
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/wordpress
-      # device: /Users/seunchoi/Desktop/wordpress
-      o: bind
