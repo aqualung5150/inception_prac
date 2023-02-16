@@ -26,11 +26,22 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
 	done
 
 	# Creates wp-config.php.
-	wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_USER_PASSWORD --dbhost=$MYSQL_HOST --allow-root --path=/var/www/html/wordpress
+	wp config create --dbname=$MYSQL_DATABASE --dbuser=$MYSQL_USER --dbpass=$MYSQL_USER_PASSWORD --dbhost=$MYSQL_HOST --allow-root --path=/var/www/html/wordpress && \
+	echo "define ( 'WP_REDIS_HOST', '$WP_REDIS_HOST' );" >> /var/www/html/wordpress/wp-config.php && \
+	echo "define ( 'WP_REDIS_PORT', $WP_REDIS_PORT );" >> /var/www/html/wordpress/wp-config.php && \
+	echo "define ( 'WP_REDIS_DATABASE', $WP_REDIS_DATABASE );" >> /var/www/html/wordpress/wp-config.php && \
+	echo "define ( 'WP_REDIS_TIMEOUT', $WP_REDIS_TIMEOUT );" >> /var/www/html/wordpress/wp-config.php && \
+	echo "define ( 'WP_REDIS_READ_TIMEOUT', $WP_REDIS_READ_TIMEOUT );" >> /var/www/html/wordpress/wp-config.php && \
+	echo "define ( 'WP_CACHE', true );" >> /var/www/html/wordpress/wp-config.php
 	# Creates the WordPress tables in the database.
 	wp core install --url=$WP_URL --title=$WP_TITLE --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html/wordpress
 	# Creates a new user.
 	wp user create $WP_USER $WP_USER_EMAIL --user_pass=$WP_USER_PASSWORD --role=author --allow-root --path=/var/www/html/wordpress
+	# Install and run redis.
+	# https://objectcache.pro/docs/wp-cli
+	wp plugin install redis-cache --activate --allow-root --path=/var/www/html/wordpress
+	wp redis enable --allow-root --path=/var/www/html/wordpress
+	# wp redis status --allow-root --path=/var/www/html/wordpress
 fi
 
 # Runs php-fpm foreground.

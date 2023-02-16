@@ -2,7 +2,7 @@ FROM alpine:3.15
 
 # Install required php packages and wp-cli
 RUN apk update && \
-	apk add --no-cache dumb-init curl mariadb-client \
+	apk add --no-cache dumb-init curl mariadb-client redis \
 	php7 php7-phar php7-fpm php7-common php7-session php7-iconv php7-json \
 	php7-gd php7-curl php7-xml php7-mysqli php7-imap \
 	php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap \

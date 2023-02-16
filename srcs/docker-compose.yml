@@ -15,6 +15,7 @@ services:
       - MYSQL_USER_PASSWORD=${MYSQL_USER_PASSWORD}
     volumes:
       - mariadb_volume:/var/lib/mysql
+
   wordpress:
     build: ./requirements/wordpress
     container_name: wordpress
@@ -38,8 +39,14 @@ services:
       - WP_USER=${WP_USER}
       - WP_USER_PASSWORD=${WP_USER_PASSWORD}
       - WP_USER_EMAIL=${WP_USER_EMAIL}
+      - WP_REDIS_HOST=${WP_REDIS_HOST}
+      - WP_REDIS_PORT=${WP_REDIS_PORT}
+      - WP_REDIS_DATABASE=${WP_REDIS_DATABASE}
+      - WP_REDIS_TIMEOUT=${WP_REDIS_TIMEOUT}
+      - WP_REDIS_READ_TIMEOUT=${WP_REDIS_READ_TIMEOUT}
     volumes:
       - wordpress_volume:/var/www/html/wordpress
+
   nginx:
     build: ./requirements/nginx
     container_name: nginx
@@ -53,6 +60,18 @@ services:
       - "443:443"
     volumes:
       - wordpress_volume:/var/www/html/wordpress
+
+  redis:
+    build: ./requirements/bonus/redis
+    container_name: redis
+    image: redis
+    depends_on:
+      - wordpress
+    restart: always
+    networks:
+      - backend_network
+    tty: true
+
 networks:
   frontend_network:
     driver: bridge
@@ -60,6 +79,7 @@ networks:
   backend_network:
     driver: bridge
     name: backend_network
+
 volumes:
   mariadb_volume:
     name: mariadb_volume
