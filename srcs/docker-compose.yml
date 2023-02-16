@@ -70,6 +70,14 @@ services:
     restart: always
     networks:
       - backend_network
+
+  ftp:
+    build: ./requirements/bonus/ftp
+    container_name: ftp
+    image: ftp
+    restart: always
+    volumes:
+      - wordpress_volume:/var/www/html/wordpress
     tty: true
 
 networks:
