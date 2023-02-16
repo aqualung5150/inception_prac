@@ -2,7 +2,7 @@ version: "3"
 
 services:
   mariadb:
-    build: ./files/mariadb
+    build: ./requirements/mariadb
     container_name: mariadb
     image: mariadb
     restart: always
@@ -16,7 +16,7 @@ services:
     volumes:
       - mariadb_volume:/var/lib/mysql
   wordpress:
-    build: ./files/wordpress
+    build: ./requirements/wordpress
     container_name: wordpress
     image: wordpress
     depends_on:
@@ -41,7 +41,7 @@ services:
     volumes:
       - wordpress_volume:/var/www/html/wordpress
   nginx:
-    build: ./files/nginx
+    build: ./requirements/nginx
     container_name: nginx
     image: nginx
     depends_on:
@@ -61,17 +61,19 @@ networks:
     driver: bridge
     name: backend_network
 volumes:
-  # mariadb_volume:
-  #   driver: local
-  #   driver_opts:
-  #     type: volume
-  #     device: /home/seunchoi/data/db
-  #     o: bind
-  # wordpress_volume:
-  #   driver: local
-  #   driver_opts:
-  #     type: volume
-  #     device: /home/seunchoi/data/wordpress
-  #     o: bind
   mariadb_volume:
+    name: mariadb_volume
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/db
+    #   o: bind
   wordpress_volume:
+    name: wordpress_volume
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/wordpress
+    #   o: bind
+  # mariadb_volume:
+  # wordpress_volume:
