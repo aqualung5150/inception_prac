@@ -3,6 +3,7 @@
 # If not setup
 if [ ! -f ".cnf_success" ]; then
 
+	echo "Configure Mariadb."
 	mkdir -p /run/mysqld /var/lib/mysql
 	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 	chown -R mysql:mysql /var/lib/mysql /run/mysqld
@@ -37,6 +38,8 @@ EOF
 
 	# Setup flag
 	touch .cnf_success
+else
+	echo "Already Setup."
 fi
 
 # Run mysqld_safe

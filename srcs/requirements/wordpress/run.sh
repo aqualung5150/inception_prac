@@ -4,6 +4,7 @@
 # php-fpm.config includes www.config file
 # Edits 'user', 'owner' and 'group' in www.config file.
 if cat /etc/php7/php-fpm.d/www.conf | grep -q "user = nobody"; then
+	echo "Php-fpm Not yet setup, Configure www.conf."
 	sed -i "s/.*user = nobody.*/user = nginx/g" /etc/php7/php-fpm.d/www.conf
 	sed -i "s/.*group = nobody.*/group = nginx/g" /etc/php7/php-fpm.d/www.conf
 	sed -i "s/.*listen = 127.0.0.1.*/listen = 9000/g" /etc/php7/php-fpm.d/www.conf
@@ -11,10 +12,13 @@ if cat /etc/php7/php-fpm.d/www.conf | grep -q "user = nobody"; then
   	echo "env[MYSQL_USER] = \$MYSQL_USER" >> /etc/php7/php-fpm.d/www.conf
   	echo "env[MYSQL_USER_PASSWORD] = \$MYSQL_USER_PASSWORD" >> /etc/php7/php-fpm.d/www.conf
   	echo "env[MYSQL_DATABASE] = \$MAMYSQL_DATABASE" >> /etc/php7/php-fpm.d/www.conf
+else
+	echo "Php-fpm already setup." 
 fi
 
 # wp-config
 if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
+	echo "Wordpress Not yet setup, Configure wp-config.php."
 	for i in $(seq 60)
 	do
 		if ! mysqladmin -u $MYSQL_USER -p$MYSQL_USER_PASSWORD -h $MYSQL_HOST ping 2> /dev/null; then
@@ -41,6 +45,8 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
 	wp plugin install redis-cache --activate --allow-root --path=/var/www/html/wordpress
 	wp redis enable --allow-root --path=/var/www/html/wordpress
 	# wp redis status --allow-root --path=/var/www/html/wordpress
+else
+	echo "Wordpress already setup."
 fi
 
 # Runs php-fpm foreground.
