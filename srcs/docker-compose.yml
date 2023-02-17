@@ -95,17 +95,15 @@ networks:
 volumes:
   mariadb_volume:
     name: mariadb_volume
-    # driver: local
-    # driver_opts:
-    #   type: volume
-    #   device: /home/seunchoi/data/db
-    #   o: bind
+    driver: local
+    driver_opts:
+      type: volume
+      device: /home/seunchoi/data/db
+      o: bind
   wordpress_volume:
     name: wordpress_volume
-    # driver: local
-    # driver_opts:
-    #   type: volume
-    #   device: /home/seunchoi/data/wordpress
-    #   o: bind
-  # mariadb_volume:
-  # wordpress_volume:
+    driver: local
+    driver_opts:
+      type: volume
+      device: /home/seunchoi/data/wordpress
+      o: bind
