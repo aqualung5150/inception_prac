@@ -78,7 +78,11 @@ services:
     restart: always
     volumes:
       - wordpress_volume:/var/www/html/wordpress
-    tty: true
+    ports:
+      - "21:21"
+    environment:
+      - FTP_USER=${FTP_USER}
+      - FTP_USER_PASSWORD=${FTP_USER_PASSWORD}
 
 networks:
   frontend_network:

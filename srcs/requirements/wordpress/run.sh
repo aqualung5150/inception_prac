@@ -37,8 +37,7 @@ if [ ! -f "/var/www/html/wordpress/wp-config.php" ]; then
 	wp core install --url=$WP_URL --title=$WP_TITLE --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PASSWORD --admin_email=$WP_ADMIN_EMAIL --allow-root --path=/var/www/html/wordpress
 	# Creates a new user.
 	wp user create $WP_USER $WP_USER_EMAIL --user_pass=$WP_USER_PASSWORD --role=author --allow-root --path=/var/www/html/wordpress
-	# Install and run redis.
-	# https://objectcache.pro/docs/wp-cli
+	# Install and run redis. => https://objectcache.pro/docs/wp-cli
 	wp plugin install redis-cache --activate --allow-root --path=/var/www/html/wordpress
 	wp redis enable --allow-root --path=/var/www/html/wordpress
 	# wp redis status --allow-root --path=/var/www/html/wordpress
