@@ -98,7 +98,7 @@ volumes:
     driver: local
     driver_opts:
       type: volume
-      device: /home/seunchoi/data/db
+      device: /home/seunchoi/data/mariadb
       o: bind
   wordpress_volume:
     name: wordpress_volume
