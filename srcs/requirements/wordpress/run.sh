@@ -8,10 +8,6 @@ if cat /etc/php7/php-fpm.d/www.conf | grep -q "user = nobody"; then
 	sed -i "s/.*user = nobody.*/user = nginx/g" /etc/php7/php-fpm.d/www.conf
 	sed -i "s/.*group = nobody.*/group = nginx/g" /etc/php7/php-fpm.d/www.conf
 	sed -i "s/.*listen = 127.0.0.1.*/listen = 9000/g" /etc/php7/php-fpm.d/www.conf
-	echo "env[MYSQL_HOST] = \$MYSQL_HOST" >> /etc/php7/php-fpm.d/www.conf
-  	echo "env[MYSQL_USER] = \$MYSQL_USER" >> /etc/php7/php-fpm.d/www.conf
-  	echo "env[MYSQL_USER_PASSWORD] = \$MYSQL_USER_PASSWORD" >> /etc/php7/php-fpm.d/www.conf
-  	echo "env[MYSQL_DATABASE] = \$MAMYSQL_DATABASE" >> /etc/php7/php-fpm.d/www.conf
 else
 	echo "Php-fpm already setup." 
 fi

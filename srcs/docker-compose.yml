@@ -60,6 +60,7 @@ services:
       - "443:443"
     volumes:
       - wordpress_volume:/var/www/html/wordpress
+      - adminer_volume:/var/www/html/adminer
 
   redis:
     build: ./requirements/bonus/redis
@@ -84,6 +85,19 @@ services:
       - FTP_USER=${FTP_USER}
       - FTP_USER_PASSWORD=${FTP_USER_PASSWORD}
 
+  adminer:
+    build: ./requirements/bonus/adminer
+    container_name: adminer
+    image: adminer
+    restart: always
+    depends_on:
+      - mariadb
+    networks:
+      - frontend_network
+      - backend_network
+    volumes:
+      - adminer_volume:/var/www/html/adminer
+
 networks:
   frontend_network:
     driver: bridge
@@ -106,4 +120,11 @@ volumes:
     driver_opts:
       type: volume
       device: /home/seunchoi/data/wordpress
+      o: bind
+  adminer_volume:
+    name: adminer_volume
+    driver: local
+    driver_opts:
+      type: volume
+      device: /home/seunchoi/data/adminer
       o: bind
