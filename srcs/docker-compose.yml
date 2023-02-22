@@ -98,6 +98,17 @@ services:
     volumes:
       - adminer_volume:/var/www/html/adminer
 
+  my-page:
+    build: ./requirements/bonus/my-page
+    container_name: my-page
+    image: my-page
+    restart: always
+    networks:
+      - frontend_network
+    # tty: true
+    # volumes:
+    #   - site_volume:/var/www/html/build
+
 networks:
   frontend_network:
     driver: bridge
@@ -109,22 +120,25 @@ networks:
 volumes:
   mariadb_volume:
     name: mariadb_volume
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/mariadb
-      o: bind
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/mariadb
+    #   o: bind
   wordpress_volume:
     name: wordpress_volume
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/wordpress
-      o: bind
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/wordpress
+    #   o: bind
   adminer_volume:
     name: adminer_volume
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/adminer
-      o: bind
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/adminer
+    #   o: bind
+    
+  # site_volume:
+  #   name: adminer_volume
