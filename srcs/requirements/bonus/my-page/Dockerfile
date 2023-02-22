@@ -6,10 +6,10 @@ RUN apk update && \
 
 WORKDIR /app
 
-COPY ./my-app/package.json /app/package.json
+COPY ./app/package.json /app/package.json
 RUN npm install --silent
 
-COPY ./my-app /app
+COPY ./app /app
 RUN npm run build
 
 FROM alpine:3.15
