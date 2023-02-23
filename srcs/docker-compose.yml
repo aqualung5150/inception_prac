@@ -106,6 +106,25 @@ services:
     networks:
       - frontend_network
 
+  grafana:
+    build: ./requirements/bonus/grafana
+    container_name: grafana
+    image: grafana
+    restart: always
+    networks:
+      - frontend_network
+      - monitoring_network
+    tty: true
+
+  prometheus:
+    build: ./requirements/bonus/prometheus
+    container_name: prometheus
+    image: prometheus
+    restart: always
+    networks:
+      - monitoring_network
+    tty: true
+
 networks:
   frontend_network:
     driver: bridge
@@ -113,6 +132,9 @@ networks:
   backend_network:
     driver: bridge
     name: backend_network
+  monitoring_network:
+    driver: bridge
+    name: monitoring_network
 
 volumes:
   mariadb_volume:
