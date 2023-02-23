@@ -19,4 +19,4 @@ vclean:
 	docker volume rm mariadb_volume wordpress_volume adminer_volume
 
 iclean:
-	docker image rm mariadb wordpress nginx redis ftp adminer my-page
+	docker image rm mariadb wordpress nginx redis ftp adminer my-page grafana prometheus cadvisor
