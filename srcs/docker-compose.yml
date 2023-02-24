@@ -132,6 +132,12 @@ services:
     restart: always
     networks:
       - monitoring_network
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    privileged: true
     tty: true
 
 networks:
