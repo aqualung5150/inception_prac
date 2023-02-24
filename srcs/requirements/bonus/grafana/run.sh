@@ -1,3 +1,5 @@
 # !/bin/sh
 
-grafana-server -config /etc/grafana.ini -homepath /usr/share/grafana
+# mv /etc/grafana.ini /usr/share/grafana/conf/default.ini
+
+grafana-server

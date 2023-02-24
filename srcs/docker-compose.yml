@@ -114,7 +114,8 @@ services:
     networks:
       - frontend_network
       - monitoring_network
-    tty: true
+    ports:
+      - "3000:3000"
 
   prometheus:
     build: ./requirements/bonus/prometheus
@@ -123,7 +124,6 @@ services:
     restart: always
     networks:
       - monitoring_network
-    tty: true
 
   cadvisor:
     build: ./requirements/bonus/cadvisor
@@ -137,8 +137,8 @@ services:
       - /var/run:/var/run:rw
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
     privileged: true
-    tty: true
 
 networks:
   frontend_network:
