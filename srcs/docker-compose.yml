@@ -116,6 +116,9 @@ services:
       - monitoring_network
     ports:
       - "3000:3000"
+    environment:
+      - GRAFANA_ADMIN=${GRAFANA_ADMIN}
+      - GRAFANA_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
 
   prometheus:
     build: ./requirements/bonus/prometheus
@@ -154,22 +157,22 @@ networks:
 volumes:
   mariadb_volume:
     name: mariadb_volume
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/mariadb
-      o: bind
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/mariadb
+    #   o: bind
   wordpress_volume:
     name: wordpress_volume
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/wordpress
-      o: bind
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/wordpress
+    #   o: bind
   adminer_volume:
     name: adminer_volume
-    driver: local
-    driver_opts:
-      type: volume
-      device: /home/seunchoi/data/adminer
-      o: bind
+    # driver: local
+    # driver_opts:
+    #   type: volume
+    #   device: /home/seunchoi/data/adminer
+    #   o: bind
