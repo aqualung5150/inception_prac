@@ -4,9 +4,7 @@ RUN apk update && \
     apk add --no-cache dumb-init grafana
 
 COPY ./run.sh /scripts/run.sh
-# COPY ./grafana.ini /usr/share/grafana/conf/default.ini
-
-WORKDIR /usr/share/grafana
+COPY ./grafana.ini /etc/grafana.ini
 
 ENTRYPOINT ["/usr/bin/dumb-init", "--"]
 

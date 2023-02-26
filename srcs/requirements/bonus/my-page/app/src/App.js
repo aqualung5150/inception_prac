@@ -11,6 +11,9 @@ function App() {
         <a href="https://seunchoi.42.fr/adminer" target="_blank">
           <button className="btn">Adminer</button>
         </a>
+        <a href="https://seunchoi.42.fr/grafana" target="_blank">
+          <button className="btn">Grafana</button>
+        </a>
       </header>
     </div>
   );
