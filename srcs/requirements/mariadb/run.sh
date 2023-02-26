@@ -24,10 +24,15 @@ if [ ! -f ".cnf_success" ]; then
 EOF
 
 	# Wait until mysqld_safe server is on
-	if ! mysqladmin -w=30 ping; then
-		printf "Failed to run mysqld"
-		exit 1
-	fi
+	for i in $(seq 60)
+	do
+		if ! mysqladmin ping 2> /dev/null; then
+			printf "Wait for mariadb server... ($i sec)\n"
+			sleep 1
+		else
+			break
+		fi
+	done
 
 	# Set up mysql with query.sql
 	mariadb < query.sql
