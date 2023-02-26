@@ -8,7 +8,6 @@ RUN apk update && \
 	php7-cgi fcgi php7-pdo php7-pdo_mysql php7-soap \
 	php7-xmlrpc php7-posix php7-mcrypt php7-gettext \
 	php7-ldap php7-ctype php7-dom php7-simplexml && \
-	rm -rf /var/cache/apk/* && \
 	mkdir -p /var/www/html/wordpress && \
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
 	mv wp-cli.phar /usr/bin && \ 

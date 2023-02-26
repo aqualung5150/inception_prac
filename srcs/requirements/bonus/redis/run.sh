@@ -7,11 +7,4 @@ else
     echo "Already bind address setup."
 fi
 
-if cat /etc/redis.conf | grep -q "protected-mode yes"; then
-    echo "Set protected-mode."
-    sed -i "s/protected-mode yes/protected-mode no/" /etc/redis.conf
-else
-    echo "Already protected-mode setup."
-fi
-
 redis-server /etc/redis.conf
