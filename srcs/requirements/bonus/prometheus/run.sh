@@ -1,3 +1,3 @@
 # !/bin/sh
 
-prometheus --config.file=./prometheus.yml
+prometheus --config.file=/etc/prometheus/prometheus.yml
