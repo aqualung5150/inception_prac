@@ -159,7 +159,6 @@ networks:
 volumes:
   mariadb_volume:
     name: mariadb_volume
-    driver: local
     driver_opts:
       type: volume
       device: /home/seunchoi/data/mariadb
@@ -167,7 +166,6 @@ volumes:
 
   wordpress_volume:
     name: wordpress_volume
-    driver: local
     driver_opts:
       type: volume
       device: /home/seunchoi/data/wordpress
@@ -175,7 +173,6 @@ volumes:
 
   adminer_volume:
     name: adminer_volume
-    driver: local
     driver_opts:
       type: volume
       device: /home/seunchoi/data/adminer
@@ -183,7 +180,6 @@ volumes:
 
   prometheus_volume:
     name: prometheus_volume
-    driver: local
     driver_opts:
       type: volume
       device: /home/seunchoi/data/prometheus
