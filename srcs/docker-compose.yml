@@ -147,9 +147,11 @@ networks:
   frontend_network:
     driver: bridge
     name: frontend_network
+
   backend_network:
     driver: bridge
     name: backend_network
+
   monitoring_network:
     driver: bridge
     name: monitoring_network
@@ -162,6 +164,7 @@ volumes:
       type: volume
       device: /home/seunchoi/data/mariadb
       o: bind
+
   wordpress_volume:
     name: wordpress_volume
     driver: local
@@ -169,6 +172,7 @@ volumes:
       type: volume
       device: /home/seunchoi/data/wordpress
       o: bind
+
   adminer_volume:
     name: adminer_volume
     driver: local
@@ -176,6 +180,7 @@ volumes:
       type: volume
       device: /home/seunchoi/data/adminer
       o: bind
+
   prometheus_volume:
     name: prometheus_volume
     driver: local
