@@ -1,4 +1,4 @@
-FROM alpine:3.15 AS builder
+FROM alpine:3.16 AS builder
 
 RUN apk update && \
     apk add --no-cache nodejs npm && \
@@ -12,7 +12,7 @@ RUN npm install --silent
 COPY ./app /app
 RUN npm run build
 
-FROM alpine:3.15
+FROM alpine:3.16
 
 RUN apk update && \
     apk add --no-cache dumb-init nginx

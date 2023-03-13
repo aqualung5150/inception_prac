@@ -41,9 +41,6 @@ services:
       - WP_USER_EMAIL=${WP_USER_EMAIL}
       - WP_REDIS_HOST=${WP_REDIS_HOST}
       - WP_REDIS_PORT=${WP_REDIS_PORT}
-      - WP_REDIS_DATABASE=${WP_REDIS_DATABASE}
-      - WP_REDIS_TIMEOUT=${WP_REDIS_TIMEOUT}
-      - WP_REDIS_READ_TIMEOUT=${WP_REDIS_READ_TIMEOUT}
     volumes:
       - wordpress_volume:/var/www/html/wordpress
 

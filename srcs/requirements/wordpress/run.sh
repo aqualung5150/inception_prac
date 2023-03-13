@@ -3,11 +3,11 @@
 # php-fpm config
 # php-fpm.config includes www.config file
 # Edits 'user', 'owner' and 'group' in www.config file.
-if cat /etc/php7/php-fpm.d/www.conf | grep -q "user = nobody"; then
+if cat /etc/php8/php-fpm.d/www.conf | grep -q "user = nobody"; then
 	echo "Php-fpm Not yet setup, Configure www.conf."
-	sed -i "s/.*user = nobody.*/user = nginx/g" /etc/php7/php-fpm.d/www.conf
-	sed -i "s/.*group = nobody.*/group = nginx/g" /etc/php7/php-fpm.d/www.conf
-	sed -i "s/.*listen = 127.0.0.1.*/listen = 9000/g" /etc/php7/php-fpm.d/www.conf
+	sed -i "s/.*user = nobody.*/user = nginx/g" /etc/php8/php-fpm.d/www.conf
+	sed -i "s/.*group = nobody.*/group = nginx/g" /etc/php8/php-fpm.d/www.conf
+	sed -i "s/.*listen = 127.0.0.1.*/listen = 9000/g" /etc/php8/php-fpm.d/www.conf
 else
 	echo "Php-fpm already setup." 
 fi
@@ -47,5 +47,5 @@ else
 fi
 
 # Runs php-fpm foreground.
-echo "Php-fpm7 Started..." && \
-php-fpm7 -F
+echo "Php-fpm Started..." && \
+php-fpm8 -F
