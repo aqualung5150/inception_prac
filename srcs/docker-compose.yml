@@ -160,27 +160,27 @@ volumes:
   mariadb_volume:
     name: mariadb_volume
     driver_opts:
-      type: volume
+      type: none
       device: /home/seunchoi/data/mariadb
       o: bind
 
   wordpress_volume:
     name: wordpress_volume
     driver_opts:
-      type: volume
+      type: none
       device: /home/seunchoi/data/wordpress
       o: bind
 
   adminer_volume:
     name: adminer_volume
     driver_opts:
-      type: volume
+      type: none
       device: /home/seunchoi/data/adminer
       o: bind
 
   prometheus_volume:
     name: prometheus_volume
     driver_opts:
-      type: volume
+      type: none
       device: /home/seunchoi/data/prometheus
       o: bind

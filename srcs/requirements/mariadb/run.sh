@@ -4,9 +4,9 @@
 if [ ! -f ".cnf_success" ]; then
 
 	echo "Configure Mariadb."
-	mkdir -p /run/mysqld /var/lib/mysql
+	mkdir -p /var/lib/mysql
 	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
-	chown -R mysql:mysql /var/lib/mysql /run/mysqld
+	chown -R mysql:mysql /var/lib/mysql
 
 	# Run mysqld_safe as background to set up config
 	/usr/bin/mysqld_safe --user=mysql --datadir=/var/lib/mysql &
